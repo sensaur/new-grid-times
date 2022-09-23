@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Menu, Search, User } from 'react-feather';
+import {Menu, Search, User} from 'react-feather';
 
-import { QUERIES } from '../../constants';
+import {QUERIES} from '../../constants';
 
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import Logo from '../Logo';
@@ -15,21 +15,35 @@ const Header = () => {
         <Row>
           <ActionGroup>
             <button>
-              <Search size={24} />
+              <Search size={24}/>
             </button>
             <button>
-              <Menu size={24} />
+              <Menu size={24}/>
             </button>
           </ActionGroup>
           <ActionGroup>
             <button>
-              <User size={24} />
+              <User size={24}/>
             </button>
           </ActionGroup>
         </Row>
       </SuperHeader>
       <MainHeader>
-        <Logo />
+        <DesktopActionGroup>
+          <button>
+            <Search size={24}/>
+          </button>
+          <button>
+            <Menu size={24}/>
+          </button>
+        </DesktopActionGroup>
+        <Logo/>
+        <DesktopSubscribeWrapper>
+          <Button>
+            Subscribe
+          </Button>
+        </DesktopSubscribeWrapper>
+        <a href="/">Already a subscriber?</a>
       </MainHeader>
     </header>
   );
@@ -54,10 +68,18 @@ const ActionGroup = styled.div`
     FIX: Remove the inline spacing that comes with
     react-feather icons.
   */
+
   svg {
     display: block;
   }
 `;
+
+const DesktopActionGroup = styled(ActionGroup)`
+  display: none;
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
+`
 
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
@@ -65,6 +87,24 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-content: revert;
+    justify-items: start;
+  }
 `;
+const SubscribeWrapper = styled.div`
+  justify-self: end;
+`
+
+const DesktopSubscribeWrapper = styled(SubscribeWrapper)`
+  display: none;
+  @media ${QUERIES.laptopAndUp} {
+    display: revert;
+  }
+`
 
 export default Header;
