@@ -42,8 +42,8 @@ const Header = () => {
           <Button>
             Subscribe
           </Button>
+          <SubLink href="/">Already a subscriber?</SubLink>
         </DesktopSubscribeWrapper>
-        <a href="/">Already a subscriber?</a>
       </MainHeader>
     </header>
   );
@@ -81,6 +81,13 @@ const DesktopActionGroup = styled(ActionGroup)`
   }
 `
 
+const SubLink = styled.a`
+  font-size: 0.875rem;
+  color: var(--color-gray-900);
+  font-style: italic;
+  text-decoration: underline;
+`
+
 const MainHeader = styled(MaxWidthWrapper)`
   display: flex;
   align-items: center;
@@ -97,13 +104,17 @@ const MainHeader = styled(MaxWidthWrapper)`
   }
 `;
 const SubscribeWrapper = styled.div`
-  justify-self: end;
+
 `
 
 const DesktopSubscribeWrapper = styled(SubscribeWrapper)`
   display: none;
   @media ${QUERIES.laptopAndUp} {
-    display: revert;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
   }
 `
 
